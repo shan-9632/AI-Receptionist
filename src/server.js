@@ -6,6 +6,8 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: false })); // <– for Twilio webhooks
+app.use(cors());
 
 // TEMP in-memory storage — replace with Redis or DB if needed
 const sessions = new Map();
