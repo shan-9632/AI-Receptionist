@@ -8,13 +8,10 @@ const client = new OpenAI({
 });
 
 /**
- * Runs one turn of the Sammies Automotive AI receptionist.
+ * One AI turn for the Sammies Automotive receptionist.
  *
  * @param {Array<{role: "user"|"assistant"|"system", content: string}>} history
- *        Prior conversation messages (excluding the new user message)
  * @param {string} latestUserMessage
- *        The latest thing the caller/customer said (text)
- * @returns {Promise<{ next_message_to_customer: string, booking: any, escalation: any }>}
  */
 export async function handleReceptionistTurn(history, latestUserMessage) {
   const messages = [
@@ -35,11 +32,10 @@ export async function handleReceptionistTurn(history, latestUserMessage) {
   try {
     parsed = JSON.parse(raw);
   } catch (err) {
-    console.error("Failed to parse AI JSON, raw text was:", raw, err);
-    // Safe fallback if the model produced something invalid
+    console.error("Failed to parse AI JSON. Raw content:", raw, err);
     parsed = {
       next_message_to_customer:
-        "Sorry, I had trouble understanding that. Could you please say that again?",
+        "Sorry, I had trouble understanding that. Could you please repeat that for me?",
       booking: {
         complete: false,
         message_only: false,
@@ -65,7 +61,6 @@ export async function handleReceptionistTurn(history, latestUserMessage) {
     };
   }
 
-  // Basic safety: ensure the shape is at least present
   if (!parsed.booking) {
     parsed.booking = {
       complete: false,
