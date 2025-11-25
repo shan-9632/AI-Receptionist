@@ -1,6 +1,10 @@
 /**
  * In-memory conversation state store
  * Stores conversation history and booking details for each session
+ * 
+ * NOTE: This is an in-memory store that will lose all data when the server
+ * restarts. For production use, consider implementing a persistence layer
+ * using a database like Redis, MongoDB, or PostgreSQL.
  */
 
 // Map to store conversation state by sessionId

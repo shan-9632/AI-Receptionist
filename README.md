@@ -147,6 +147,7 @@ npm test
 |----------|-------------|---------|
 | `PORT` | Server port | 3000 |
 | `OPENAI_API_KEY` | OpenAI API key | Required |
+| `OPENAI_MODEL` | OpenAI model to use | gpt-3.5-turbo |
 
 ## License
 

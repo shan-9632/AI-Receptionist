@@ -65,13 +65,10 @@ router.post('/', async (req, res) => {
     // Add the assistant's response to the conversation history
     conversationStore.addMessage(sessionId, 'assistant', response);
 
-    // Update booking details with any new information
-    const updatedDetails = {};
-    for (const [key, value] of Object.entries(extractedDetails)) {
-      if (value !== null) {
-        updatedDetails[key] = value;
-      }
-    }
+    // Update booking details with any new information (filter out null values)
+    const updatedDetails = Object.fromEntries(
+      Object.entries(extractedDetails).filter(([, value]) => value !== null)
+    );
     
     if (Object.keys(updatedDetails).length > 0) {
       conversationStore.updateBookingDetails(sessionId, updatedDetails);
