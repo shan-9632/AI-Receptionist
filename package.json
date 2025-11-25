@@ -1,0 +1,26 @@
+{
+  "name": "ai-receptionist",
+  "version": "1.0.0",
+  "description": "AI Receptionist backend that talks to OpenAI API to collect booking details",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest --coverage"
+  },
+  "keywords": [
+    "ai",
+    "receptionist",
+    "openai",
+    "booking"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0",
+    "openai": "^4.68.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}
